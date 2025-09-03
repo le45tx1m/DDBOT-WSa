@@ -51,7 +51,7 @@
     {{ if eq $DyVideo "的动态视频" -}}
         {{ printf "%v\n%v\n%v%v%v%v\n" $msg .dynamic.Date $title .dynamic.Content $orgTip .dynamic.Video.Dynamic -}}
     {{ else -}}
-        {{ printf "%v\n%v\n%v%v%v%v\n\n标题：%v\n简介：%v\n" $msg .dynamic.Date $title .dynamic.Content $orgTip .dynamic.Video.Dynamic .dynamic.Video.Title .dynamic.Video.Desc -}}
+        {{ printf "%v\n%v\n%v%v%v%v\n标题：%v\n简介：%v\n" $msg .dynamic.Date $title .dynamic.Content $orgTip .dynamic.Video.Dynamic .dynamic.Video.Title .dynamic.Video.Desc -}}
     {{ end -}}
     {{ pic .dynamic.Video.CoverUrl -}}
 {{ else if eq .dynamic.Type 64 -}}
