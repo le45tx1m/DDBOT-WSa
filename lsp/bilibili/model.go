@@ -480,6 +480,7 @@ type DynamicInfo struct {
 	Video struct {
 		Title    string `json:",omitempty"`
 		Desc     string `json:",omitempty"`
+		Dynamic  string `json:",omitempty"`
 		CoverUrl string `json:",omitempty"`
 		Action   string `json:",omitempty"`
 	}
@@ -639,7 +640,9 @@ func (c *CacheCard) prepare() {
 			}
 			c.dynamic.Video.Title = origin.GetTitle()
 			c.dynamic.Video.Desc = origin.GetDesc()
+			c.dynamic.Video.Dynamic = origin.GetDynamic()
 			c.dynamic.Video.CoverUrl = origin.GetPic()
+			c.dynamic.Video.Action = card.GetDisplay().GetOrigin().GetUsrActionTxt()
 		case DynamicDescType_WithPost:
 			c.dynamic.Type = DynamicDescType_WithPost
 			c.dynamic.Content = cardOrigin.GetItem().GetContent()
@@ -805,10 +808,10 @@ func (c *CacheCard) prepare() {
 		if description == cardVideo.GetTitle() {
 			description = ""
 		}
-		// web接口好像还区分不了动态视频，先不处理了
 		actionText := card.GetDisplay().GetUsrActionTxt()
 		c.dynamic.Video.Action = actionText
 		c.dynamic.Video.Title = cardVideo.GetTitle()
+		c.dynamic.Video.Dynamic = cardVideo.GetDynamic()
 		if len(description) != 0 {
 			c.dynamic.Video.Desc = description
 		}
